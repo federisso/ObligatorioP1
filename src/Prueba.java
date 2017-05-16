@@ -20,15 +20,22 @@ public class Prueba {
         if(laOferta2.getValor()>laMayor.getValor()){
            
             laMayor=laOferta2;
+            
         
+        }
+        else {
+            laMenor=laOferta2;
+            
         }
         if(laOferta3.getValor()>laMayor.getValor()){
             laMayor=laOferta3;
             
-            
+        }
+        if(laOferta3.getValor()<laMenor.getValor()){
+            laMenor=laOferta3;
         }
         
-        
+        return laMenor+"-"+laMayor;
         
             
         
