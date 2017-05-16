@@ -10,34 +10,7 @@ import java.util.Scanner;
 public class Prueba {  
 
    
-    public String rangoOferta(Oferta laOferta1 ,Oferta laOferta2,Oferta laOferta3){
-        Oferta laMayor=laOferta1;
-        Oferta laMenor=laOferta1;
-        
-        
-        
-        
-        if(laOferta2.getValor()>laMayor.getValor()){
-           
-            laMayor=laOferta2;
-            
-        
-        }
-        else {
-            laMenor=laOferta2;
-            
-        }
-        if(laOferta3.getValor()>laMayor.getValor()){
-            laMayor=laOferta3;
-            
-        }
-        if(laOferta3.getValor()<laMenor.getValor()){
-            laMenor=laOferta3;
-        }
-        
-        return laMenor+"-"+laMayor;
-        
-    }
+    
     
     
     
@@ -54,6 +27,8 @@ public class Prueba {
         Oferta of3;
         Local local;
         Articulo articulo;
+        
+       
         
         local = IngresarLocal();
         articulo = IngresarArticulo();
@@ -73,8 +48,12 @@ public class Prueba {
                         opcionMenu=PedirEntero("Ingrese una opción");
                         
                         switch(opcionMenu){
-                            case 1: break;
-                            case 2: break;
+                            case 1: 
+                                System.out.println("El rango es:"+RangoOferta(of1,of2,of3));
+                                break;
+                            case 2: 
+                                System.out.println("El promedio es:"+PromedioOferta(of1,of2,of3));
+                                break;
                             case 3: break; 
                             case 4: volver = true;
                         }           
@@ -96,7 +75,7 @@ public class Prueba {
     
     public static void ImprimirMenuOfertas(){
     
-        System.out.println("1 - Consulta de artículo");
+        System.out.println("1 - Consulta de rango de Precios");
         System.out.println("2 - Consulta de precio promedio");
         System.out.println("3 - Consulta de infracción");
         System.out.println("4 - Volver al menú principal");   
@@ -150,8 +129,30 @@ public class Prueba {
         
         return articulo;
     }
-    public double promedioOferta(Oferta laOferta1 ,Oferta laOferta2,Oferta laOferta3){
-        return (laOferta1.getValor()+laOferta2.getValor()+laOferta3.getValor()/3);
+    
+    public static double PromedioOferta(Oferta laOferta1 ,Oferta laOferta2,Oferta laOferta3){
+        return ((laOferta1.getValor()+laOferta2.getValor()+laOferta3.getValor())/3);
+    }
+    
+    public static String RangoOferta(Oferta laOferta1 ,Oferta laOferta2,Oferta laOferta3){
+        Oferta laMayor=laOferta1;
+        Oferta laMenor=laOferta1;
+        
+        if(laOferta2.getValor()>laMayor.getValor()){
+            laMayor=laOferta2;
+        }
+        else {
+            laMenor=laOferta2;    
+        }
+        if(laOferta3.getValor()>laMayor.getValor()){
+            laMayor=laOferta3;   
+        }
+        if(laOferta3.getValor()<laMenor.getValor()){
+            laMenor=laOferta3;
+        }
+        
+        return laMenor.getValor()+"-"+laMayor.getValor();
+        
     }
     
 }
