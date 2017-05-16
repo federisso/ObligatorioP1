@@ -2,23 +2,30 @@
 public final class Articulo {
     
     private String descripcion;
-    //private int codigoBarras; Comente codigo de barras porque el profe dijo que podia ir en la clase prueba.
+    private long codigoBarras; 
     private int rubro;
     private double precioRef;
     
-    public Articulo(String laDescripcion ,int elRubro,double elPrecioRef){
+    public Articulo(String laDescripcion, long elCodigoBarras, int elRubro,double elPrecioRef){
         this.setDescripcion(laDescripcion);
+        this.setCodigoBarras(elCodigoBarras);
         this.setRubro(elRubro);
         this.setPrecioRef(elPrecioRef);
     }
     
+    public Articulo(){
+        this.setDescripcion(null);
+        this.setCodigoBarras(0);
+        this.setPrecioRef(0);
+        this.setRubro(0);
+    }
     
         public String getDescripcion(){
            return descripcion;          
         }
-        /*public int getCodigoBarras(){
+        public long getCodigoBarras(){
            return codigoBarras;
-        }*/
+        }
         public int getRubro(){
            return rubro;
         }
@@ -28,9 +35,9 @@ public final class Articulo {
         public void setDescripcion(String laDescripcion){
            descripcion=laDescripcion;
         }
-        /* public void setCodigoBarras(int elCodigo){
+         public void setCodigoBarras(long elCodigo){
            codigoBarras=elCodigo;
-        }*/
+        }
         public void setRubro(int elRubro){
            rubro=elRubro;
         }
