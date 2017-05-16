@@ -37,12 +37,9 @@ public class Prueba {
         
         return laMenor+"-"+laMayor;
         
-            
-        
-          
-        
-    
     }
+    
+    
     
     
     public static void main (String[] args){
@@ -152,6 +149,9 @@ public class Prueba {
         articulo.setRubro(PedirEntero("Ingrese el rubro (1- congelado, 2 – bebida sin alcohol, 3- bebida con alcohol, 4 – fruta/verdura, 5- alimento, 6 – producto para bebés, 7- limpieza, 8- otro)"));
         
         return articulo;
+    }
+    public String promedioOferta(Oferta laOferta1 ,Oferta laOferta2,Oferta laOferta3){
+        return"El Promedio de las Ofertas es:"+(laOferta1.getValor()+laOferta2.getValor()+laOferta3.getValor()/3);
     }
     
 }
