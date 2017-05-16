@@ -150,8 +150,8 @@ public class Prueba {
         
         return articulo;
     }
-    public String promedioOferta(Oferta laOferta1 ,Oferta laOferta2,Oferta laOferta3){
-        return"El Promedio de las Ofertas es:"+(laOferta1.getValor()+laOferta2.getValor()+laOferta3.getValor()/3);
+    public double promedioOferta(Oferta laOferta1 ,Oferta laOferta2,Oferta laOferta3){
+        return (laOferta1.getValor()+laOferta2.getValor()+laOferta3.getValor()/3);
     }
     
 }
