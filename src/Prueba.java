@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Prueba {  
 
-/*    
+   
     public String rangoOferta(Oferta laOferta1 ,Oferta laOferta2,Oferta laOferta3){
         Oferta laMayor=laOferta1;
         Oferta laMenor=laOferta1;
@@ -36,7 +36,7 @@ public class Prueba {
         
     
     }
-  */  
+    
     
     public static void main (String[] args){
         
