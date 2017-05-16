@@ -6,44 +6,60 @@ public final class Oferta {
     private double valor;
     private int vigencia;
     
+    
+    
     public Oferta(Local elLocal,Articulo elArticulo,String laDescripcion,double elValor ,int laVigencia){
-                  
         this.setLocal(elLocal);
         this.setArticulo(elArticulo);
         this.setDescripcion(laDescripcion);
         this.setValor(elValor);
         this.setVigencia(laVigencia);
-   
     }
     
+    public Oferta(){
+        this.setLocal(null);
+        this.setArticulo(null);
+        this.setDescripcion(null);
+        this.setValor(0);
+        this.setVigencia(0);
+    }
     
     public Local getLocal(){
        return local;
     }
+    
     public Articulo getArticulo(){
        return articulo;
     }
+    
     public String getDescripcion(){
         return descripcion;
     }
+    
     public double getValor(){
         return valor;
     }
+    
     public int getVigencia(){
         return vigencia;
     }
+    
     public void setLocal(Local elLocal){
         local=elLocal;
     }
+    
     public void setArticulo(Articulo elArticulo){
         articulo=elArticulo;
     }
+    
     public void setDescripcion(String laDescripcion){
         descripcion=laDescripcion;
     }
+    
     public void setValor(double elValor){
         valor=elValor;
     }
+    
     public void setVigencia(int laVigencia){
         vigencia=laVigencia;
     }
@@ -55,8 +71,4 @@ public final class Oferta {
                "Descripcion :"+this.getDescripcion()+
                "El valor es :"+this.getValor();
     }
-    
-
-    
-    
 }

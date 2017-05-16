@@ -154,4 +154,10 @@ public class Prueba {
         return (laOferta1.getValor()+laOferta2.getValor()+laOferta3.getValor()/3);
     }
     
+    public static Oferta IngresarOferta(){
+        Oferta oferta = new Oferta();
+        oferta.setArticulo
+        return oferta;
+    }
+    
 }
