@@ -59,14 +59,12 @@ public final class Articulo {
            
               return this.getPrecioRef() < unPrecio;
         }
-        public boolean precioMenor(double unPrecio){
-             
-              return this.getPrecioRef() > unPrecio;     
+        */
+        @Override
+        public boolean equals(Object o){
+            Articulo a=(Articulo)o;
+            return this.getCodigoBarras()==a.getCodigoBarras();
         }
-        public boolean elMismoPrecio(double unPrecio){
-              
-              return this.getPrecioRef()== unPrecio;
-        } */
  }
 
         
