@@ -81,32 +81,92 @@ public class Prueba {
         System.out.println("4 - Volver al menú principal");   
     }
     
-    public static int PedirEntero(String textoSolicitud){
+    public static void ImprimirMensaje(char tipo, String mensaje){
+        
+        switch(tipo){
+            case 'E' : mensaje = "ERROR: " + mensaje;
+            case 'A' : mensaje = "ATENCIÓN: " + mensaje;
+            case 'C' : mensaje = "CORRECTO: " + mensaje;
+        }
+        
+        System.out.println(mensaje);
+            
+    }
+    
+     public static long PedirEntero(String textoSolicitud, String textoError, int inicio, int fin){
         //Imprime el texto del parámetro y luego pide un entero.
         Scanner sc = new Scanner(System.in);
-        System.out.print(textoSolicitud + ": ");
-        return sc.nextInt();
+        int numero;
+        boolean error;
+        
+        do{ 
+            error=false;
+            System.out.print(textoSolicitud + ": ");
+            numero = sc.nextInt();
+            if (!RangoNumericoValido(numero, inicio, fin)){
+                error=true;
+                ImprimirMensaje('E',textoError);
+            }
+        } while(error);
+         
+        return numero;
     }
 
-    public static String PedirString(String textoSolicitud){
+    public static String PedirString(String textoSolicitud, String textoError){
         //Imprime el texto del parámetro y luego pide un entero.
         Scanner sc = new Scanner(System.in);
-        System.out.print(textoSolicitud + ": ");
-        return sc.nextLine();
+        String cadena;
+        boolean error;
+        
+        do{ 
+            error=false;
+            System.out.print(textoSolicitud + ": ");
+            cadena = sc.nextLine();
+            if (cadena.isEmpty()){
+                error=true;
+                ImprimirMensaje('E',textoError);
+            }
+        } while(error);
+         
+        return cadena;
     }
     
-    public static double PedirDouble(String textoSolicitud){
+    public static double PedirDouble(String textoSolicitud, String textoError, double inicio, double fin){
         //Imprime el texto del parámetro y luego pide un entero.
         Scanner sc = new Scanner(System.in);
-        System.out.print(textoSolicitud + ": ");
-        return sc.nextDouble();
+        double numero;
+        boolean error;
+        
+        do{ 
+            error=false;
+            System.out.print(textoSolicitud + ": ");
+            numero = sc.nextDouble();
+            if (!RangoNumericoValido(numero, inicio, fin)){
+                error=true;
+                ImprimirMensaje('E',textoError);
+            }
+        } while(error);
+         
+        return numero;
     }
     
-    public static long PedirLong(String textoSolicitud){
+    public static long PedirLong(String textoSolicitud, String textoError, long inicio, long fin){
         //Imprime el texto del parámetro y luego pide un entero.
         Scanner sc = new Scanner(System.in);
-        System.out.print(textoSolicitud + ": ");
-        return sc.nextLong();
+        long numero;
+        boolean error;
+        
+        do{ 
+            error=false;
+            System.out.print(textoSolicitud + ": ");
+             numero = sc.nextLong();
+            if (!RangoNumericoValido(numero, inicio, fin)){
+                error=true;
+                ImprimirMensaje('E',textoError);
+            }
+        } while(error);
+         
+        return numero;
     }
     
     public static Local IngresarLocal (){
@@ -161,4 +221,7 @@ public class Prueba {
         return oferta;
     }
     
+    public static boolean RangoNumericoValido(double valor, double inicio, double fin){
+        return valor>=inicio && valor <=fin;
+    }
 }
