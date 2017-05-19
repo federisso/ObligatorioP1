@@ -47,9 +47,15 @@ public final class Local {
                   +"Tipo:"+this.getTipo()
                   +"Dirección:"+this.getDireccion();
        }
+    @Override
+       public boolean equals(Object o){
+           Local l=(Local)o;
+           return this.getNombre().equals(l.getNombre())
+                   && this.getTipo()==l.getTipo();
+       }
+    
        
        
       
-     
 }
 
