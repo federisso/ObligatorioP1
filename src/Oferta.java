@@ -64,6 +64,12 @@ public final class Oferta {
         vigencia=laVigencia;
     }
     
+    
+    
+    
+    
+    
+    
     @Override
     public String toString(){
        return "El local :"+this.getLocal()+
@@ -71,4 +77,34 @@ public final class Oferta {
                "Descripcion :"+this.getDescripcion()+
                "El valor es :"+this.getValor();
     }
+    @Override
+    public boolean equals(Object o){
+        Oferta p=(Oferta)o;
+        return this.getArticulo().equals(p.getArticulo())&&
+                this.getValor()== p.getValor();
+    }
+    
+    public static Oferta LaMayor(Oferta oferta1,Oferta oferta2){
+        Oferta laMayor;
+        if(oferta1.getValor()>oferta2.getValor()){
+            laMayor=oferta1;
+        }
+        else{
+            laMayor=oferta2;
+        }
+        
+        return laMayor;
+    }
+    public static Oferta LaMenor(Oferta oferta1,Oferta oferta2){
+        Oferta laMenor;
+        if(oferta1.getValor()<oferta2.getValor()){
+            laMenor=oferta1;
+        }
+        else{
+            laMenor=oferta2;
+        }
+        return laMenor;
+    }
+    
+
 }
