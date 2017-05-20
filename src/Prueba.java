@@ -160,6 +160,29 @@ public class Prueba {
         return cadena;
     }
     
+    public static String PedirString(String textoSolicitud,String valoresAVerificar,  String textoError){
+        //Imprime el texto del parámetro y luego pide un entero.
+        Scanner sc = new Scanner(System.in);
+        String cadena;
+        boolean error;
+        
+        do{ 
+            error=false;
+            System.out.print(textoSolicitud + ": ");
+            cadena = sc.nextLine();
+            if (cadena.isEmpty()){
+                error=true;
+                ImprimirMensaje('E',textoError);
+            }else if(!ContieneDeLaLista(cadena, valoresAVerificar)){
+                error=true;
+                ImprimirMensaje('E', "El valor ingresados debe contener alguna de las palabras: "+valoresAVerificar);
+            }
+        } while(error);
+         
+        return cadena;
+    }
+    
+    
     public static double PedirDouble(String textoSolicitud, String textoError, double inicio, double fin){
         //Imprime el texto del parámetro y luego pide un entero.
         Scanner sc = new Scanner(System.in);
@@ -227,7 +250,7 @@ public class Prueba {
         oferta.setArticulo(articulo);
         oferta.setLocal(local);
         
-        oferta.setDescripcion(PedirString("Ingrese la descripción:","La descripción no puede ser vacía"));
+        oferta.setDescripcion(PedirString("Ingrese la descripción:","voucher;oferta;tarjeta","La descripción no puede ser vacía"));
         oferta.setValor(PedirDouble("Ingrese el valor:", "El precio ingresado debe ser un valor positivo",0, Double.MAX_VALUE));
         oferta.setVigencia(PedirEntero("Ingrese la vigencia de la oferta en días:", "La vigencia debe ser mayor a 0", 0, Integer.MAX_VALUE));
         return oferta;
@@ -247,5 +270,19 @@ public class Prueba {
     public static boolean RangoNumericoValido(long valor, long inicio, long fin){
         return valor>=inicio && valor <=fin;
     }
+    
+    public static boolean ContieneDeLaLista(String buscarEn, String buscados){
+        //Separa los valores del segundo string en un arreglo y luego verifica si esos valores existen en el primero
+        //las palabras obligatoriamente deben venir separadas por ;
+        String palabras[] = buscados.split(";");
+        boolean contiene = false;
+        
+        for (int i=0; i<palabras.length;i++){
+           if (buscarEn.contains(palabras[i]))
+               contiene = true;
+        }
+        return contiene;
+    }
+    
 // </editor-fold>
 } // fin de la clase Prueba
