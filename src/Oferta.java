@@ -84,24 +84,24 @@ public final class Oferta {
                 this.getValor()== p.getValor();
     }
     
-    public static Oferta LaMayor(Oferta oferta1,Oferta oferta2){
+    public  Oferta laMayor(Oferta of){
         Oferta laMayor;
-        if(oferta1.getValor()>oferta2.getValor()){
-            laMayor=oferta1;
+        if(this.getValor()>of.getValor()){
+            laMayor=this;
         }
         else{
-            laMayor=oferta2;
+            laMayor=of;
         }
         
         return laMayor;
     }
-    public static Oferta LaMenor(Oferta oferta1,Oferta oferta2){
+    public Oferta laMenor(Oferta of){
         Oferta laMenor;
-        if(oferta1.getValor()<oferta2.getValor()){
-            laMenor=oferta1;
+        if(this.getValor()<of.getValor()){
+            laMenor=this;
         }
         else{
-            laMenor=oferta2;
+            laMenor=of;
         }
         return laMenor;
     }

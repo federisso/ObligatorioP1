@@ -80,24 +80,19 @@ public class Prueba {
         return ((laOferta1.getValor()+laOferta2.getValor()+laOferta3.getValor())/3);
     }
     
-    public static String RangoOferta(Oferta laOferta1 ,Oferta laOferta2,Oferta laOferta3){
-        Oferta laMayor=laOferta1;
-        Oferta laMenor=laOferta1;
+    public static String RangoOferta(Oferta of1 ,Oferta of2,Oferta of3){
+        Oferta may;
+        Oferta men;
+        may=of1.laMayor(of2);
+        may=may.laMayor(of3);
+        men=of1.laMenor(of2);
+        men=men.laMenor(of3);
         
-        if(laOferta2.getValor()>laMayor.getValor()){
-            laMayor=laOferta2;
-        }
-        else {
-            laMenor=laOferta2;    
-        }
-        if(laOferta3.getValor()>laMayor.getValor()){
-            laMayor=laOferta3;   
-        }
-        if(laOferta3.getValor()<laMenor.getValor()){
-            laMenor=laOferta3;
-        }
         
-        return laMenor.getValor()+"-"+laMayor.getValor();
+        
+        
+        
+        return may.getValor()+"-"+men.getValor();
         
     }
    
