@@ -157,7 +157,7 @@ public class Prueba {
     
     public static Oferta IngresarOferta(){
         Oferta oferta = new Oferta();
-        oferta.setArticulo
+        oferta.setArticulo();
         return oferta;
     }
     
