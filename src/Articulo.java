@@ -61,9 +61,9 @@ public final class Articulo {
         }
         */
         @Override
-        public boolean equals(Object o){
-            Articulo a=(Articulo)o;
-            return this.getCodigoBarras()==a.getCodigoBarras();
+            public boolean equals(Object o){
+              Articulo a=(Articulo)o;
+              return this.getCodigoBarras()==a.getCodigoBarras();
         }
  }
 
