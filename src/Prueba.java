@@ -87,12 +87,8 @@ public class Prueba {
         may=may.laMayor(of3);
         men=of1.laMenor(of2);
         men=men.laMenor(of3);
-        
-        
-        
-        
-        
-        return may.getValor()+"-"+men.getValor();
+       
+        return men.getValor()+"-"+may.getValor();
         
     }
    
