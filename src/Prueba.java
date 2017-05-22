@@ -31,8 +31,13 @@ public class Prueba {
             
             switch(opcionMenu){
             
-                case 1 : break;
-                case 2 : break;
+                case 1 :
+                    double nuevoPrecio=PedirDouble("Ingrese el precio de referencia del artículo", "El precio no puede ser inferior a 1", 1, Double.MAX_VALUE);
+                    System.out.println( articulo.compararPrecio(nuevoPrecio));
+                    articulo.setPrecioRef(nuevoPrecio);
+                    break;
+                case 2 : local.setDireccion(PedirString("Ingrese la dirección del local","La dirección del local no puede ser vacía"));
+                    break;
                 case 3 : 
                     boolean volver = false;
                     
