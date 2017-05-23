@@ -68,9 +68,9 @@ public class Prueba {
     public static void ImprimirMensaje(char tipo, String mensaje){
         
         switch(tipo){
-            case 'E' : mensaje = "ERROR: " + mensaje; break;
-            case 'A' : mensaje = "ATENCIÓN: " + mensaje; break;
-            case 'C' : mensaje = "CORRECTO: " + mensaje; break;
+            case 'E' : mensaje = "***** ERROR: " + mensaje; break;
+            case 'A' : mensaje = "***** ATENCIÓN: " + mensaje; break;
+            case 'C' : mensaje = "***** CORRECTO: " + mensaje; break;
         }
         
         System.out.println(mensaje);
@@ -94,8 +94,8 @@ public class Prueba {
    
     
     public static void LimpiarPantalla(){
-       for (int i=0;i<1000;i++)
-           System.out.print("\b");
+       for (int i=0;i<20;i++)
+           System.out.println();
     }
    
 //<editor-fold defaultstate="collapsed" desc="Impresión de menús">
