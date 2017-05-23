@@ -65,7 +65,18 @@ public final class Articulo {
               Articulo a=(Articulo)o;
               return this.getCodigoBarras()==a.getCodigoBarras();
         }
- }
+            public String compararPrecio(double nuevoValor){
+                String valor;
+                if(this.getPrecioRef()>nuevoValor){ 
+                    valor="El precio de Referencia ingresado es menor";
+                } else if(this.getPrecioRef()==nuevoValor){
+                    valor="El precio de Referencia ingresado es  igual";
+                    
+                }else{
+                    valor="El precio de Referencia ingresado es mayor";
+                }
+                return valor;
+            }
 
         
-
+}
