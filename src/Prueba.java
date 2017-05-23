@@ -26,6 +26,7 @@ public class Prueba {
         articulo = IngresarArticulo();
         
         do {    
+            LimpiarPantalla();
             ImprimirMenuPrincipal();
             opcionMenu = PedirEntero("Ingrese una opción", "La opción ingresada no existe", 1,4);
             
@@ -41,7 +42,7 @@ public class Prueba {
                     of3=IngresarOferta(local, articulo);
                     
                     do {
-                        
+                        LimpiarPantalla();
                         ImprimirMenuOfertas();
                         opcionMenu=PedirEntero("Ingrese una opción", "La opción ingresada no existe", 1, 4);
                         
@@ -86,19 +87,21 @@ public class Prueba {
         may=of1.laMayor(of2);
         may=may.laMayor(of3);
         men=of1.laMenor(of2);
-        men=men.laMenor(of3);
-        
-        
-        
-        
-        
+        men=men.laMenor(of3); 
         return may.getValor()+"-"+men.getValor();
         
     }
    
+    
+    public static void LimpiarPantalla(){
+       for (int i=0;i<1000;i++)
+           System.out.print("\b");
+    }
    
 //<editor-fold defaultstate="collapsed" desc="Impresión de menús">
-     public static void ImprimirMenuPrincipal(){
+    public static void ImprimirMenuPrincipal(){
+        System.out.println("MENÚ PRINCIPAL");
+        System.out.println("==============");
         System.out.println("1 - Actualizar precio de artículo");
         System.out.println("2 - Actualizar dirección del local");
         System.out.println("3 - Gestión de ofertas");
@@ -106,7 +109,8 @@ public class Prueba {
     }
     
     public static void ImprimirMenuOfertas(){
-    
+        System.out.println("MENÚ OFERTAS");
+        System.out.println("==============");
         System.out.println("1 - Consulta de rango de Precios");
         System.out.println("2 - Consulta de precio promedio");
         System.out.println("3 - Consulta de infracción");
@@ -221,7 +225,8 @@ public class Prueba {
 // <editor-fold defaultstate="collapsed" desc="Cargar objetos">
      public static Local IngresarLocal (){
         Local local = new Local();
-        
+        System.out.println("LOCAL");
+        System.out.println("=====");
         local.setNombre(PedirString("Ingrese el nombre del local", "El nombre del local no puede ser vacío"));
         local.setTipo(PedirEntero("Ingrese el tipo (1-almacén, 2-supermercado, 3-hipermercado, 4- kiosko, 5- otro)","El tipo de local ingresado no existe" ,1, 5));
         local.setDireccion(PedirString("Ingrese la dirección del local","La dirección del local no puede ser vacía"));
@@ -231,11 +236,12 @@ public class Prueba {
     
         public static Articulo IngresarArticulo(){
         Articulo articulo = new Articulo();
-        
+        System.out.println("ARTÍCULO");
+        System.out.println("========");
         articulo.setCodigoBarras(PedirLong("Ingrese el código del artículo","Valor no permitido para el código", 0, Long.MAX_VALUE));
         articulo.setDescripcion(PedirString("Ingrese la descripción del artículo", "La descripción no puede ser vacía"));
         articulo.setPrecioRef(PedirDouble("Ingrese el precio de referencia del artículo", "El precio no puede ser inferior a 1", 1, Double.MAX_VALUE));
-        articulo.setRubro(PedirEntero("Ingrese el rubro (1- congelado, 2 – bebida sin alcohol, 3- bebida con alcohol, 4 – fruta/verdura, 5- alimento, 6 – producto para bebés, 7- limpieza, 8- otro)","El rubro ingresado no existe", 1, 8));
+        articulo.setRubro(PedirEntero("Ingrese el rubro (1- congelado, 2 – bebida sin alcohol, 3- bebida con alcohol, 4 – fruta/verdura, \n5- alimento, 6 – producto para bebés, 7- limpieza, 8- otro)","El rubro ingresado no existe", 1, 8));
         
         return articulo;
     }
@@ -244,10 +250,11 @@ public class Prueba {
         Oferta oferta = new Oferta();
         oferta.setArticulo(articulo);
         oferta.setLocal(local);
-        
-        oferta.setDescripcion(PedirString("Ingrese la descripción:","voucher;oferta;tarjeta","La descripción no puede ser vacía"));
-        oferta.setValor(PedirDouble("Ingrese el valor:", "El precio ingresado debe ser un valor positivo",0, Double.MAX_VALUE));
-        oferta.setVigencia(PedirEntero("Ingrese la vigencia de la oferta en días:", "La vigencia debe ser mayor a 0", 0, Integer.MAX_VALUE));
+        System.out.println("NUEVA OFERTA");
+        System.out.println("============");
+        oferta.setDescripcion(PedirString("Ingrese la descripción","voucher;oferta;tarjeta","La descripción no puede ser vacía"));
+        oferta.setValor(PedirDouble("Ingrese el valor", "El precio ingresado debe ser un valor positivo",0, Double.MAX_VALUE));
+        oferta.setVigencia(PedirEntero("Ingrese la vigencia de la oferta en días", "La vigencia debe ser mayor a 0", 0, Integer.MAX_VALUE));
         return oferta;
     }   
     // </editor-fold>
