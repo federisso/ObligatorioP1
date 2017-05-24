@@ -1,5 +1,7 @@
 
+import java.io.IOException;
 import java.util.Scanner;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -36,8 +38,11 @@ public class Prueba {
                     double nuevoPrecio=PedirDouble("Ingrese el precio de referencia del artículo", "El precio no puede ser inferior a 1", 1, Double.MAX_VALUE);
                     System.out.println( articulo.compararPrecio(nuevoPrecio));
                     articulo.setPrecioRef(nuevoPrecio);
+                    PresioneParaContinuar();
                     break;
-                case 2 : local.setDireccion(PedirString("Ingrese la dirección del local","La dirección del local no puede ser vacía"));
+                case 2 : 
+                    local.setDireccion(PedirString("Ingrese la dirección del local","La dirección del local no puede ser vacía"));
+                    PresioneParaContinuar();
                     break;
                 case 3 : 
                     boolean volver = false;
@@ -54,9 +59,11 @@ public class Prueba {
                         switch(opcionMenu){
                             case 1: 
                                 System.out.println("El rango es:"+RangoOferta(of1,of2,of3));
+                                PresioneParaContinuar();
                                 break;
                             case 2: 
                                 System.out.println("El promedio es:"+PromedioOferta(of1,of2,of3));
+                                PresioneParaContinuar();
                                 break;
                             case 3: break; 
                             case 4: volver = true;
@@ -86,18 +93,15 @@ public class Prueba {
         return ((laOferta1.getValor()+laOferta2.getValor()+laOferta3.getValor())/3);
     }
     
-    public static String RangoOferta(Oferta of1 ,Oferta of2,Oferta of3){
+    public static String RangoOferta(Oferta of1, Oferta of2, Oferta of3){
         Oferta may;
         Oferta men;
         may=of1.laMayor(of2);
         may=may.laMayor(of3);
         men=of1.laMenor(of2);
-
         men=men.laMenor(of3);
        
         return men.getValor()+"-"+may.getValor();
-
-        
     }
    
     
@@ -128,7 +132,17 @@ public class Prueba {
     
 // <editor-fold defaultstate="collapsed" desc="Métodos de solicitud de datos">
     
-         public static int PedirEntero(String textoSolicitud, String textoError, int inicio, int fin){
+        public static void PresioneParaContinuar() {
+        
+            System.out.println("*** Presione una tecla para continuar...");
+            try {
+                System.in.read();
+            } catch (IOException ex) {
+          
+            }
+        }
+    
+        public static int PedirEntero(String textoSolicitud, String textoError, int inicio, int fin){
         //Imprime el texto del parámetro y luego pide un entero.
         Scanner sc = new Scanner(System.in);
         int numero;
