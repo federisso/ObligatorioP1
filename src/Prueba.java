@@ -57,13 +57,15 @@ public class Prueba {
                             case 2: 
                                 System.out.println("El promedio es:"+PromedioOferta(of1,of2,of3));
                                 break;
-                            case 3: break; 
+                            case 3:
+                               break;
                             case 4: volver = true;
                         }           
                     }while(!volver);
                     break;
                 case 4 : 
                     salir = true;
+                            
                     break;  
             }
         } while(!salir);
@@ -97,6 +99,23 @@ public class Prueba {
         
     }
    
+       
+   }
+    
+    
+   /* public static String LocalInfracion(Oferta of1,Oferta of2, Oferta of3){
+        String inf;
+        if((of1.getValor())>(of1.getArticulo().getPrecioRef())*2){
+            inf="El local esta en infraccion";
+            
+        }
+        else{
+            inf="El local no esta en infraccion";
+        }
+        return inf;
+    }
+   */
+    
    
 //<editor-fold defaultstate="collapsed" desc="Impresión de menús">
      public static void ImprimirMenuPrincipal(){
