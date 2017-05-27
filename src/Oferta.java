@@ -105,16 +105,12 @@ public final class Oferta {
         }
         return laMenor;
     }
-    public String ofertaInfa(Oferta of){
-        String retu;
-        if(of.getValor()>this.getArticulo().getPrecioRef()*2){
-            retu="El local esta en infracion";
-        }
-        else{
-            retu="El local no esta en infracion";
-        }
-        return retu;
+    public boolean precioInvalido(){
+        
+         return valor >this.getArticulo().getPrecioRef()*2;
     }
     
-}
+    }
+    
+
 
