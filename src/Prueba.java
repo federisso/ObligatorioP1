@@ -111,15 +111,15 @@ public class Prueba {
        
         return men.getValor()+"-"+may.getValor();
     }
-   
+   public static boolean Infracion(Oferta of1 ,Oferta of2,Oferta of3){
+        return of1.precioInvalido()|| of2.precioInvalido()|| of3.precioInvalido();
+    }
     
     public static void LimpiarPantalla(){
        for (int i=0;i<20;i++)
            System.out.println();
     }
-    public static boolean Infracion(Oferta of1 ,Oferta of2,Oferta of3){
-        return of1.precioInvalido()|| of2.precioInvalido()|| of3.precioInvalido();
-    }
+    
    
 //<editor-fold defaultstate="collapsed" desc="Impresión de menús">
     public static void ImprimirMenuPrincipal(){
