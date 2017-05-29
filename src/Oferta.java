@@ -1,5 +1,6 @@
 
 public final class Oferta {
+    //Atributos
     private Local local;
     private Articulo articulo;
     private String descripcion;
@@ -7,6 +8,14 @@ public final class Oferta {
     private int vigencia;
     
     
+    //Constructores
+    public Oferta(){
+        this.setLocal(null);
+        this.setArticulo(null);
+        this.setDescripcion(null);
+        this.setValor(0);
+        this.setVigencia(0);
+    }
     
     public Oferta(Local elLocal,Articulo elArticulo,String laDescripcion,double elValor ,int laVigencia){
         this.setLocal(elLocal);
@@ -16,14 +25,7 @@ public final class Oferta {
         this.setVigencia(laVigencia);
     }
     
-    public Oferta(){
-        this.setLocal(null);
-        this.setArticulo(null);
-        this.setDescripcion(null);
-        this.setValor(0);
-        this.setVigencia(0);
-    }
-    
+    //Getters
     public Local getLocal(){
        return local;
     }
@@ -44,6 +46,7 @@ public final class Oferta {
         return vigencia;
     }
     
+    //setters
     public void setLocal(Local elLocal){
         local=elLocal;
     }
@@ -64,12 +67,7 @@ public final class Oferta {
         vigencia=laVigencia;
     }
     
-    
-    
-    
-    
-    
-    
+    //Overrides de métodos de Object (toString y equals)
     @Override
     public String toString(){
        return "El local :"+this.getLocal()+
@@ -81,36 +79,38 @@ public final class Oferta {
     public boolean equals(Object o){
         Oferta p=(Oferta)o;
         return this.getArticulo().equals(p.getArticulo())&&
-                this.getValor()== p.getValor();
+               this.getValor()== p.getValor();
     }
     
-    public  Oferta laMayor(Oferta of){
+    //Se evalúa el valor de la oferta de la instancia con el de la oferta pasada como parámetro. 
+    //El método devuelve la que tiene mayuor valor.
+    public  Oferta devolverLaMayor(Oferta of){
         Oferta laMayor;
-        if(this.getValor()>of.getValor()){
+        if(this.getValor()>of.getValor())
             laMayor=this;
-        }
-        else{
+        else
             laMayor=of;
-        }
         
         return laMayor;
     }
-    public Oferta laMenor(Oferta of){
+    //Se evalúa el valor de la oferta de la instancia con el de la oferta pasada como parámetro. 
+    //El método devuelve la que tiene mayuor valor.
+    public Oferta devolverLaMenor(Oferta of){
         Oferta laMenor;
-        if(this.getValor()<of.getValor()){
+        if(this.getValor()<of.getValor())
             laMenor=this;
-        }
-        else{
+        else
             laMenor=of;
-        }
+        
         return laMenor;
     }
-    public boolean precioInvalido(){
-        
-         return valor >this.getArticulo().getPrecioRef()*2;
+    //Indica si un precio de oferta es inválido. Esto es, que el valor supere el doble 
+    //del precio de referencia del artículo.
+    public boolean precioInvalido(){        
+         return this.getValor() > this.getArticulo().getPrecioRef()*2;
     }
     
-    }
+}
     
 
 
