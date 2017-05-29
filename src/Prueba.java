@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class Prueba {  
     
-//<editor-fold defaultstate="collapsed" desc="Clase principal">  
+//<editor-fold defaultstate="collapsed" desc="main">  
     public static void main (String[] args){
         
         //Variables
@@ -148,6 +148,9 @@ public class Prueba {
     
 // <editor-fold defaultstate="collapsed" desc="Métodos de solicitud de datos">
     
+    //Read captura la entrada del primer caracter que se ingresa (no es necesario presionar enter).
+    //No estamos guardando el valor porque solamente lo utilizamos para pausar el progama antes de limpiar la pantalla.
+    //El método read() obliga a capturar la excepción, por eso se utilizó la estructura try - catch.
     public static void PresioneParaContinuar() {
         System.out.println("*** Presione una tecla para continuar...");
         try {
@@ -166,7 +169,6 @@ public class Prueba {
     //Se continuará solicitando un número mientras que lo ingresado no sea válido (no vacío y dentro del rango).
     
     public static int PedirEntero(String textoSolicitud, String textoError, int inicio, int fin){
-    
         Scanner sc = new Scanner(System.in);
         int numero=0;
         String lectura;
@@ -180,6 +182,7 @@ public class Prueba {
                 error=true;
                 ImprimirMensaje('E',"El valor ingresado no puede ser vacío.");
             } else {
+                //Se intepreta el string ingresado como entero y se asigna a una variable entera.
                 numero=Integer.parseInt(lectura);
                 if (!RangoNumericoValido(numero, inicio, fin)){
                     error=true;
@@ -187,6 +190,76 @@ public class Prueba {
                 }
             }
         } while(error);
+        return numero;
+    }
+
+    //Imprime el texto del parámetro y solicita ingresar un número. Para verificar si ingresó un salto de línea,
+    //el dato es leído como string (de lo contrario Java deja seguir presionando "Enter" hasta que se ingrese un número.
+    //El string se intepreta como long.
+    //Si el dato ingresado se puede interpretar exitosamente, se verifica luego que pertenezca al rango conformado por el 
+    //tercer y cuarto parámetro. En este caso se imprime el mensaje de error del segundo parámetro.
+    //Si no se puede interpretar el texto ingresado como long, el programa da un error en tiempo de ejecución como esta previsto.
+    //Se continuará solicitando un número mientras que lo ingresado no sea válido (no vacío y dentro del rango).
+
+    public static long PedirLong(String textoSolicitud, String textoError, long inicio, long fin){
+        Scanner sc = new Scanner(System.in);
+        String lectura;
+        long numero=0;
+        boolean error;
+        
+        do{ 
+            error=false;
+            System.out.print(textoSolicitud + ": ");
+            lectura = sc.nextLine();
+            
+            if (lectura.isEmpty()){
+                error=true;
+                ImprimirMensaje('E', "El valor ingresado no puede ser vacío.");
+            }else{ 
+                //Se interpreta el string leído como long
+                numero=Long.parseLong(lectura);
+                if (!RangoNumericoValido(numero, inicio, fin)){
+                    error=true;
+                    ImprimirMensaje('E',textoError);
+                }
+            }
+        } while(error);     
+        
+        return numero;
+    }
+    
+    //Imprime el texto del parámetro y solicita ingresar un número. Para verificar si ingresó un salto de línea,
+    //el dato es leído como string (de lo contrario Java deja seguir presionando "Enter" hasta que se ingrese un número.
+    //El string se intepreta como double.
+    //Si el dato ingresado se puede interpretar exitosamente, se verifica luego que pertenezca al rango conformado por el 
+    //tercer y cuarto parámetro. En este caso se imprime el mensaje de error del segundo parámetro.
+    //Si no se puede interpretar el texto ingresado como double, el programa da un error en tiempo de ejecución como esta previsto.
+    //Se continuará solicitando un número mientras que lo ingresado no sea válido (no vacío y dentro del rango).
+    
+    public static double PedirDouble(String textoSolicitud, String textoError, double inicio, double fin){
+        Scanner sc = new Scanner(System.in);
+        String lectura;
+        double numero=0;
+        boolean error;
+        
+        do{ 
+            error=false;
+            System.out.print(textoSolicitud + ": ");
+            lectura=sc.nextLine();
+            
+            if(lectura.isEmpty()){
+                ImprimirMensaje('E', "El valor ingresado no puede ser vacío");
+                error=true;
+            }else{
+                //Se interpreta el string leído como double.
+                numero=Double.parseDouble(lectura);
+                if (!RangoNumericoValido(numero, inicio, fin)){
+                    error=true;
+                    ImprimirMensaje('E',textoError);
+                }
+            }
+        } while(error);
+         
         return numero;
     }
 
@@ -215,9 +288,8 @@ public class Prueba {
     //Sobrecarga del método PedirString que además de efectuar los controles mencionados anteriormente
     //verifica que el texto ingresado tenga alguna de las palabras especificadas en el segundo parámetro.
     //La lista de palabras ingresadas debe estar delimitada por ; (punto y coma).
-    //
+    //Si el string ingresado no contiene las palabras requeridas, se vuelve a solicitar el ingreso de un texto.
     public static String PedirString(String textoSolicitud,String valoresAVerificar,  String textoError){
-    
         Scanner sc = new Scanner(System.in);
         String cadena;
         boolean error;
@@ -229,88 +301,23 @@ public class Prueba {
             if (cadena.isEmpty()){
                 error=true;
                 ImprimirMensaje('E',textoError);
+            //Llamada al método que verifica la presencia de las palabras requeridas
             }else if(!ContieneDeLaLista(cadena, valoresAVerificar)){
                 error=true;
-                ImprimirMensaje('E', "El valor ingresados debe contener alguna de las palabras: "+valoresAVerificar);
+                ImprimirMensaje('E', "El valor ingresado debe contener alguna de las palabras: "+valoresAVerificar);
             }
         } while(error);
          
         return cadena;
     }
 
-    //Imprime el texto del parámetro y solicita ingresar un número. Para verificar si ingresó un salto de línea,
-    //el dato es leído como string (de lo contrario Java deja seguir presionando "Enter" hasta que se ingrese un número.
-    //El string se intepreta como double.
-    //Si el dato ingresado se puede interpretar exitosamente, se verifica luego que pertenezca al rango conformado por el 
-    //tercer y cuarto parámetro. En este caso se imprime el mensaje de error del segundo parámetro.
-    //Si no se puede interpretar el texto ingresado como double, el programa da un error en tiempo de ejecución como esta previsto.
-    //Se continuará solicitando un número mientras que lo ingresado no sea válido (no vacío y dentro del rango).
     
-    public static double PedirDouble(String textoSolicitud, String textoError, double inicio, double fin){
-        //Imprime el texto del parámetro y luego pide un entero.
-        Scanner sc = new Scanner(System.in);
-        String lectura;
-        double numero=0;
-        boolean error;
-        
-        do{ 
-            error=false;
-            System.out.print(textoSolicitud + ": ");
-            lectura=sc.nextLine();
-            
-            if(lectura.isEmpty()){
-                ImprimirMensaje('E', "El valor ingresado no puede ser vacío");
-                error=true;
-            }else{
-                numero=Double.parseDouble(lectura);
-                if (!RangoNumericoValido(numero, inicio, fin)){
-                    error=true;
-                    ImprimirMensaje('E',textoError);
-                }
-            }
-        } while(error);
-         
-        return numero;
-    }
-    
-    //Imprime el texto del parámetro y solicita ingresar un número. Para verificar si ingresó un salto de línea,
-    //el dato es leído como string (de lo contrario Java deja seguir presionando "Enter" hasta que se ingrese un número.
-    //El string se intepreta como long.
-    //Si el dato ingresado se puede interpretar exitosamente, se verifica luego que pertenezca al rango conformado por el 
-    //tercer y cuarto parámetro. En este caso se imprime el mensaje de error del segundo parámetro.
-    //Si no se puede interpretar el texto ingresado como long, el programa da un error en tiempo de ejecución como esta previsto.
-    //Se continuará solicitando un número mientras que lo ingresado no sea válido (no vacío y dentro del rango).
-
-    public static long PedirLong(String textoSolicitud, String textoError, long inicio, long fin){
-        //Imprime el texto del parámetro y luego pide un entero.
-        Scanner sc = new Scanner(System.in);
-        String lectura;
-        long numero=0;
-        boolean error;
-        
-        do{ 
-            error=false;
-            System.out.print(textoSolicitud + ": ");
-            lectura = sc.nextLine();
-            
-            if (lectura.isEmpty()){
-                error=true;
-                ImprimirMensaje('E', "El valor ingresado no puede ser vacío.");
-            }else{ 
-                numero=Long.parseLong(lectura);
-                if (!RangoNumericoValido(numero, inicio, fin)){
-                    error=true;
-                    ImprimirMensaje('E',textoError);
-                }
-            }
-        } while(error);     
-        
-        return numero;
-    }
    //</editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc="Cargar objetos">
-     public static Local IngresarLocal (){
+    //Se solicitan los valores para crear un objeto de tipo Local y luego se retorna el objeto creado
+    //cargado.
+    public static Local IngresarLocal (){
         Local local = new Local();
         System.out.println("LOCAL");
         System.out.println("=====");
@@ -320,7 +327,8 @@ public class Prueba {
        
         return local;
     }
-    
+    //Se solicitan los valores para crear un objeto del tipo Artículo y luego se retorna el objeto creado
+    //cargado.
     public static Articulo IngresarArticulo(){
         Articulo articulo = new Articulo();
         System.out.println("ARTÍCULO");
@@ -332,7 +340,8 @@ public class Prueba {
        
         return articulo;
     }
-     
+    //Se solicitan los valores para crear un objeto del tipo Artículo y luego se retorna el objeto creado
+    //cargado. 
     public static Oferta IngresarOferta(Local local, Articulo articulo){
         Oferta oferta = new Oferta();
         oferta.setArticulo(articulo);
@@ -348,11 +357,14 @@ public class Prueba {
     // </editor-fold>
     
 //<editor-fold defaultstate="collapsed" desc="Lógica de ofertas">    
-
+    
+    //Recibe tres ofertas como parámetro y devuelve el valor promedio de las 3.
     public static double PromedioOferta(Oferta of1 ,Oferta of2,Oferta of3){
         return ((of1.getValor() + of2.getValor() + of3.getValor())/3);
     }
     
+    //Recibe tres ofertas como parámetro y devuelve un string indicando el menor valor y el mayor.
+    //de la siguiente forma 10.0-80.0 (P.ej. si las tres fueran 10.0, 35.0 y 80.0)
     public static String RangoOferta(Oferta of1, Oferta of2, Oferta of3){
         Oferta may;
         Oferta men;
@@ -363,14 +375,20 @@ public class Prueba {
        
         return men.getValor() + "-" + may.getValor();
     }
-   public static boolean Infracion(Oferta of1 ,Oferta of2,Oferta of3){
-        return of1.precioInvalido()|| of2.precioInvalido()|| of3.precioInvalido();
+    //Si alguna de las 3 ofertas recibidas como parámetro cumple con la condición de inválida
+    //(su valor es más del doble del precio de refernecia del artículo) el método devuelve el valor 
+    //verdadero.
+    public static boolean Infracion(Oferta of1 ,Oferta of2,Oferta of3){
+        return of1.precioInvalido() || of2.precioInvalido() || of3.precioInvalido();
     }
     
 //   </editor-fold>
     
 // <editor-fold defaultstate="collapsed" desc="Validaciones">
- 
+    
+    //Si el valor del primer parámetro se encuentra entre los valores del segundo y del tercer parámetro
+    //(con los extremos incluidos) el método devuelve verdadero. En caso contrario, devuelve falso.
+    //El método tiene sobrecargas para los distintos tipos de datos numéricos.
     public static boolean RangoNumericoValido(double valor, double inicio, double fin){
         return valor>=inicio && valor <=fin;
     }
@@ -383,9 +401,9 @@ public class Prueba {
         return valor>=inicio && valor <=fin;
     }
     
+    //Separa los valores del segundo string en un arreglo y luego verifica si esos valores existen en el primero
+    //las palabras obligatoriamente deben venir separadas por ;
     public static boolean ContieneDeLaLista(String buscarEn, String buscados){
-        //Separa los valores del segundo string en un arreglo y luego verifica si esos valores existen en el primero
-        //las palabras obligatoriamente deben venir separadas por ;
         String palabras[] = buscados.split(";");
         boolean contiene = false;
         
@@ -397,6 +415,5 @@ public class Prueba {
     }
     
 // </editor-fold>
-    
     
 } // fin de la clase Prueba
