@@ -1,13 +1,16 @@
+/*
+Materia: Programación 1
+Profesor: Sebastián Pesce
+Grupo: N1B
+
+Equipo de obligatorio
+=====================
+Federico Risso - #216516
+Camilo Morasca - #164329
+*/
 
 import java.io.IOException;
 import java.util.Scanner;
-
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 public class Prueba {  
     
@@ -152,6 +155,7 @@ public class Prueba {
     //No estamos guardando el valor porque solamente lo utilizamos para pausar el progama antes de limpiar la pantalla.
     //El método read() obliga a capturar la excepción, por eso se utilizó la estructura try - catch.
     public static void PresioneParaContinuar() {
+        System.out.println();
         System.out.println("*** Presione una tecla para continuar...");
         try {
             System.in.read();
@@ -350,7 +354,7 @@ public class Prueba {
         System.out.println("============");
         oferta.setDescripcion(PedirString("Ingrese la descripción","voucher;oferta;tarjeta","La descripción no puede ser vacía"));
         oferta.setValor(PedirDouble("Ingrese el valor", "El precio ingresado debe ser un valor positivo",0, Double.MAX_VALUE));
-        oferta.setVigencia(PedirEntero("Ingrese el mes de vigencia de la oferta.", "El mes ingresado no es válido.", 1, 12));
+        oferta.setVigencia(PedirEntero("Ingrese el mes de vigencia de la oferta", "El mes ingresado no es válido.", 1, 12));
        
         return oferta;
     }   
